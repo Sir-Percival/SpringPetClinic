@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.project</groupId>
     <artifactId>SpringPetClinic</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>SpringPetClinic</name>
     <description>SpringPetClinic</description>
@@ -25,7 +25,7 @@
         <developerConnection>
             scm:git:https://github.com/Sir-Percival/SpringPetClinic.git
         </developerConnection>
-      <tag>SpringPetClinic-0.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <build>
