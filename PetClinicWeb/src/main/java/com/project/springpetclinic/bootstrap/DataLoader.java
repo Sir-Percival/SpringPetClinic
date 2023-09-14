@@ -1,10 +1,7 @@
 package com.project.springpetclinic.bootstrap;
 
 import com.project.springpetclinic.models.*;
-import com.project.springpetclinic.services.OwnerService;
-import com.project.springpetclinic.services.PetTypeService;
-import com.project.springpetclinic.services.SpecialityService;
-import com.project.springpetclinic.services.VetService;
+import com.project.springpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +14,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -75,6 +75,13 @@ public class DataLoader implements CommandLineRunner {
 
         ownerService.save(owner1);
 
+        Visit catVisit = new Visit();
+        catVisit.setPet(mikesPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezing cat");
+
+        visitService.save(catVisit);
+
         Owner owner2 = new Owner();
         owner2.setFirstName("Fiona");
         owner2.setLastName("Glenanne");
@@ -90,6 +97,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(fionasDog);
 
         ownerService.save(owner2);
+
+        Visit dogVisit = new Visit();
+        dogVisit.setPet(fionasDog);
+        dogVisit.setDate(LocalDate.now());
+        dogVisit.setDescription("Sneezing dog");
+
+        visitService.save(dogVisit);
 
         System.out.println("Load owners.....");
 
